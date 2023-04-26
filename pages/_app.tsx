@@ -3,6 +3,7 @@ import '../styles/globals.scss';
 
 import ErrorBoundary from '@components/ErrorBoundary';
 import AppLayout from '@layout/AppLayout';
+import { Waterfall } from '@next/font/google';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -19,8 +20,6 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-import { Waterfall } from '@next/font/google';
-
 const WaterfallFont = Waterfall({
   subsets: ['latin'],
   weight: '400',
@@ -28,7 +27,7 @@ const WaterfallFont = Waterfall({
 });
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout ? Component.getLayout : (page: any) => page;
+  const getLayout = Component.getLayout ?? ((page: any) => page);
 
   return (
     <>
@@ -55,4 +54,5 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   );
 }
 
+// @ts-ignore
 export default appWithTranslation(MyApp, nextI18nConfig);

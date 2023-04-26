@@ -1,3 +1,4 @@
+/* eslint-disable require-await */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import TokenManager, { injectBearer } from 'brainless-token-manager';
 import { ENV } from 'src/utils/env';
@@ -35,16 +36,16 @@ const tokenManager = new TokenManager({
       refresh_token: '',
     };
   },
-  onRefreshTokenSuccess: ({ token, refresh_token }) => {},
+  onRefreshTokenSuccess: ({ token, refresh_token: refreshToken }) => {
+    console.log(refreshToken);
+  },
   onInvalidRefreshToken: async () => {
     // Logout
   },
 });
 
 const privateRequest = async (request: any, suffixUrl: string, configs?: any) => {
-  const token: string = configs?.token
-    ? configs?.token
-    : ((await tokenManager.getToken()) as string);
+  const token: string = configs?.token ?? ((await tokenManager.getToken()) as string);
 
   return request(suffixUrl, injectBearer(token, configs));
 };
@@ -54,14 +55,10 @@ export const checkTokenExpiredOnServer = async (ctx: any) => {
   try {
     // const token = getAccessToken(ctx?.res, ctx?.req);
     // const salonRefreshToken = getRefreshToken(ctx?.res, ctx?.req);
-
     // const decoded = parseJwt(token);
     // const { exp } = decoded;
-
     // const currentTime = Date.now() / 1000;
-
     // if (exp - 5 > currentTime) return null;
-
     // const res: any = await privateRequest(fetch, `${PREFIX_API}/auth/refresh-token`, {
     //   method: 'POST',
     //   headers: {
@@ -70,22 +67,16 @@ export const checkTokenExpiredOnServer = async (ctx: any) => {
     //   },
     //   body: JSON.stringify({ refresh_token: salonRefreshToken }),
     // }).then((r) => r.json());
-
     // if (res?.token && res?.refresh_token) {
     //   const objToken = {
     //     token: res?.token,
     //     refreshToken: res?.refresh_token,
     //     expiredTime: res?.expired_time || 0,
     //   };
-
     //   setAuthCookies(objToken, { res: ctx?.res, req: ctx?.req });
-
     //   return res?.token;
     // }
-    return null;
-  } catch (error) {
-    return null;
-  }
+  } catch {}
 };
 
 export const requestFromServer = async (ctx: any, suffixUrl: string) => {
