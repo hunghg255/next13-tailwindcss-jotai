@@ -1,14 +1,16 @@
 import '../styles/tailwind.css';
 import '../styles/globals.scss';
 
-import ErrorBoundary from '@components/ErrorBoundary';
-import AppLayout from '@layout/AppLayout';
+import type { ReactElement, ReactNode } from 'react';
+
 import { Waterfall } from '@next/font/google';
 import type { NextPage } from 'next';
+import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { appWithTranslation } from 'next-i18next';
-import type { ReactElement, ReactNode } from 'react';
+
+import ErrorBoundary from '@components/ErrorBoundary';
+import AppLayout from '@layout/AppLayout';
 
 import nextI18nConfig from '../next-i18next.config';
 
