@@ -3,9 +3,9 @@ import '../styles/globals.scss';
 
 import { ReactElement, ReactNode } from 'react';
 
-import { Waterfall } from '@next/font/google';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
+import { Waterfall } from 'next/font/google';
 import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
 
