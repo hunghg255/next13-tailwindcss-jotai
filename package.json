@@ -40,7 +40,7 @@
     "env-cmd": "^10.1.0",
     "eslint": "^8.47.0",
     "eslint-config-next": "12.3.0",
-    "git-scm-hooks": "^0.0.5",
+    "git-scm-hooks": "^0.0.6",
     "postcss": "^8.4.28",
     "prettier": "^2.8.8",
     "sass": "^1.66.1",
