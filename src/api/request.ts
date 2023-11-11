@@ -38,6 +38,7 @@ const tokenManager = new TokenManager({
     };
   },
   onRefreshTokenSuccess: ({ token, refresh_token: refreshToken }) => {
+    // eslint-disable-next-line no-console
     console.log(refreshToken);
   },
   onInvalidRefreshToken: async () => {

@@ -2,15 +2,10 @@ import { ReactElement } from 'react';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import Home from '@components/Home';
 import MainLayout from '@layout/MainLayout';
 
 const HomePage = () => {
-  return (
-    <div>
-      <Home />
-    </div>
-  );
+  return <div></div>;
 };
 
 HomePage.getLayout = function getLayout(page: ReactElement) {
