@@ -5,6 +5,7 @@ import { ReactElement, ReactNode } from 'react';
 
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
+import dynamic from 'next/dynamic';
 import { Waterfall } from 'next/font/google';
 import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
@@ -13,6 +14,10 @@ import ErrorBoundary from '@components/ErrorBoundary';
 import AppLayout from '@layout/AppLayout';
 
 import nextI18nConfig from '../next-i18next.config';
+
+const HydarationOverlay = dynamic(() => import('next-hydration-overlay').then((m) => m.Overlay), {
+  ssr: false,
+});
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -51,6 +56,8 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           {getLayout(<Component {...pageProps} />)}
         </AppLayout>
       </ErrorBoundary>
+
+      <HydarationOverlay />
     </>
   );
 }
