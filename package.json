@@ -15,7 +15,8 @@
     "verify-commit": "verify-commit-msg",
     "prepare": "git-scm-hooks",
     "release": "bumpp -r",
-    "gen-icon": "csvgtocss"
+    "gen-icon": "csvgtocss",
+    "standalone": "node server.js"
   },
   "dependencies": {
     "ahooks": "^3.7.8",
