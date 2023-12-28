@@ -8,6 +8,25 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const isProd = process.env.NODE_ENV === 'production';
 
+const securityHeaders = [
+  {
+    key: 'X-DNS-Prefetch-Control',
+    value: 'on',
+  },
+  {
+    key: 'X-XSS-Protection',
+    value: '1; mode=block',
+  },
+  {
+    key: 'X-Frame-Options',
+    value: 'SAMEORIGIN',
+  },
+  {
+    key: 'X-Content-Type-Options',
+    value: 'nosniff',
+  },
+];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // i18n
@@ -44,6 +63,10 @@ const nextConfig = {
     }
     return [
       {
+        source: '/:path*',
+        headers: securityHeaders,
+      },
+      {
         source: '/:all*(svg|jpg|jpeg|png|webp|avif|otf|ttf|woff|woff2|eot)',
         locale: false,
         headers: [
@@ -55,6 +78,7 @@ const nextConfig = {
       },
     ];
   },
+  poweredByHeader: false,
 };
 
 module.exports = isProd ? nextConfig : withHydrationOverlay()(withBundleAnalyzer(nextConfig));
