@@ -7,7 +7,7 @@
     "build": "next build",
     "buildDev": "cp -f .env.clientDev .env && next build",
     "buildProd": "cp -f .env.clientProd .env && next build",
-    "start": "env-cmd -f .env.production next start",
+    "start": "env-cmd -f .env.clientProd next start",
     "lint": "next lint",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
