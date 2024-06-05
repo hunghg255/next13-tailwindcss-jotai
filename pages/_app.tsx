@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import '../styles/globals.scss';
 import '../styles/tailwind.css';
 
@@ -5,7 +6,7 @@ import { ReactElement, ReactNode } from 'react';
 
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
-import { Waterfall } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
 
@@ -21,7 +22,7 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-const WaterfallFont = Waterfall({
+const RobotoFont = Roboto({
   subsets: ['latin'],
   weight: '400',
   variable: '--font-waterfall',
@@ -46,10 +47,14 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         />
       </Head>
 
+      <style jsx global>{`
+        :root {
+          --fontRoboto: ${RobotoFont.style.fontFamily};
+        }
+      `}</style>
+
       <ErrorBoundary>
-        <AppLayout WaterfallFont={WaterfallFont}>
-          {getLayout(<Component {...pageProps} />)}
-        </AppLayout>
+        <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
       </ErrorBoundary>
     </>
   );
