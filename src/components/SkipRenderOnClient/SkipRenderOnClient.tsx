@@ -56,7 +56,6 @@ export const SkipRenderOnClient: React.FC<{
   const isFirstRender = useIsFirstRender();
 
   if (isClient && isFirstRender && shouldRenderOnClient() === false) {
-    // eslint-disable-next-line unicorn/prefer-query-selector
     const el = document.getElementById(id);
     if (el !== null) {
       el.innerHTML = '';
